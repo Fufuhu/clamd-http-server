@@ -6,6 +6,11 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3310:3310"
+    healthcheck:
+      test: ["CMD-SHELL", "(sleep 0.5; echo PING) | nc -v -w 1 127.0.0.1 3310"]
+      interval: 10s
+      retries: 3
+      start_period: 40s
     volumes:
       - type: volume
         source: clamd_socket

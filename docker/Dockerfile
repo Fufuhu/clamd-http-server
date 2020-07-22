@@ -3,7 +3,8 @@ FROM debian:buster-slim
 RUN apt-get update && \
     apt-get install --no-install-recommends -y \
         clamav-daemon \
-        ca-certificates && \
+        ca-certificates \
+        netcat && \
     apt-get clean && \
     rm -rf /var/lib/apt-/lists/* && \
     freshclam --user clamav
