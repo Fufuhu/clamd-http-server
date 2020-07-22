@@ -21,7 +21,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: freshclam -d --stdout --foreground -c 4
+    command: freshclam -d --stdout --foreground -c 24
     volumes:
       - type: volume
         source: clamd_socket
