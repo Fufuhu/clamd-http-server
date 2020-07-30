@@ -56,7 +56,7 @@ def upload():
 
 
 CLAMD_SERVER = 'CLAMD_SERVER'
-CLAMD_SERVER_PORT = 'CLAMD_SERVER_PORT'
+CLAMD_LISTENING_PORT = 'CLAMD_LISTENING_PORT'
 
 INSTREAM_COMMAND = "nINSTREAM\n".encode()
 CHUNK_SIZE = 1024
@@ -67,7 +67,7 @@ def send(file: FileStorage, host: str = None, port: int = None) -> str:
 
     if host is None:
         clamd_server = os.environ.get(CLAMD_SERVER, 'localhost')
-        clamd_port = int(os.environ.get(CLAMD_SERVER_PORT, 3310))
+        clamd_port = int(os.environ.get(CLAMD_LISTENING_PORT, 3310))
     else:
         clamd_server = host
         clamd_port = port
@@ -94,4 +94,5 @@ def send(file: FileStorage, host: str = None, port: int = None) -> str:
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    listening_port = os.environ.get("CLAMD_HTTP_SERVER_LISTENING_PORT", "5000")
+    app.run(debug=True, host='0.0.0.0', port=int(listening_port))

@@ -9,7 +9,7 @@ FixStaleSocket true
 LocalSocketGroup clamav
 LocalSocketMode 666
 TCPAddr 0.0.0.0
-TCPSocket 3310
+TCPSocket $CLAMD_LISTENING_PORT
 
 # Basic setting
 User clamav
